@@ -37,32 +37,33 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
     process.exit(0);
   }
   lane = startlane;
-  console.log("Car",carId);
-  /*
+  console.log("Car:"+carId+"  Lane:"+lane);
+
   noble.startScanning();
   setTimeout(function() {
     noble.stopScanning();
   }, 2000);
-  */
 
-noble.on('stateChange', function(state) {
-  if (state === 'poweredOn') {
+  /*
+  noble.on('stateChange', function(state) {
+   if (state === 'poweredOn') {
     noble.startScanning();
 
     setTimeout(function() {
        noble.stopScanning();
        process.exit(0);
      }, 2000);
-  } else {
+   } else {
     noble.stopScanning();
-  }
-});
+   }
+  });
+  */
 
   noble.on('discover', function(peripheral) {
-    console.log('service id')
-    console.log(peripheral.id)
+    console.log('service id: ', peripheral.id)
     if (peripheral.id === carId) {
       noble.stopScanning();
+      console.log('car found: ', peripheral.id);
 
       var advertisement = peripheral.advertisement;
       var serviceUuids = JSON.stringify(peripheral.advertisement.serviceUuids);
@@ -96,9 +97,11 @@ noble.on('stateChange', function(state) {
               var characteristic = characteristics[characteristicIndex];
               async.series([
                 function(callback) {
+                  console.log('characteristic.uuid');
                   if (characteristic.uuid == 'be15bee06186407e83810bd89c4d8df4') {
                     readCharacteristic = characteristic;
-
+                    
+                    console.log('used characteristic.uuid', readCharacteristic);
                     readCharacteristic.notify(true, function(err) {
                     });
 
@@ -106,10 +109,12 @@ noble.on('stateChange', function(state) {
                       receivedMessages.handle(data, mqttClient);
                     });
                   }
-
+                  
+                  console.log('characteristic.uuid');
                   if (characteristic.uuid == 'be15bee16186407e83810bd89c4d8df4') {                        
                     writeCharacteristic = characteristic;
-
+                    
+                    console.log('used characteristic.uuid', readCharacteristic);
                     init(startlane); 
 
                     // this characterstic doesn't seem to be used for receiving data
@@ -145,7 +150,7 @@ noble.on('stateChange', function(state) {
 
   mqttClient.on('message', function(topic, message, packet) {
     var msg = JSON.parse(message.toString());
-    //console.log('Message received from Bluemix');
+    console.log('Message received from IBM Cloud');
     
     if (msg.d.action == '#s') {
       var cmd = "s";

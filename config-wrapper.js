@@ -14,7 +14,8 @@
 // limitations under the License.
 //------------------------------------------------------------------------------
 
-var mqtt = require('mqtt');
+//var mqtt = require('mqtt');
+var mqtt = require('ibmiotf');
 var properties = require('properties');
 
 function start(deviceId, apiKey, apiToken, mqttHost, mqttPort, carid, startlane, devicetype, callback) {
@@ -24,20 +25,23 @@ function start(deviceId, apiKey, apiToken, mqttHost, mqttPort, carid, startlane,
   console.log("apiToken:", apiToken );
   console.log("mqttHost:", mqttHost );
   console.log("mqttPort:", mqttPort );
-  console.log("carid:", startlane );
-  console.log("deviceType:", devicetype );
+  console.log("carid:", carid );
+  console.log("startlane:", startlane );
+  console.log("devicetype:", devicetype );
 
   var org = apiKey.split('-')[1];
   var clientId = ['d', org, devicetype, deviceId].join(':');
   var command = "car";
 
   console.log("Connection string: " + "mqtt://" + mqttHost + ":" + mqttPort);
+
   var mqttClient = mqtt.connect("mqtt://" + mqttHost + ":" + mqttPort, {
               "clientId" : clientId,
               "keepalive" : 30,
               //"username" : "use-token-auth",
-              "username" : "a-04glwq-wd6omfvnir",
+              "username" : apiKey,
               "password" : apiToken
+              //"useSSL": true
             });
 
   console.log("Status:",mqttClient.connected);
@@ -45,10 +49,10 @@ function start(deviceId, apiKey, apiToken, mqttHost, mqttPort, carid, startlane,
   mqttClient.on('connect', function() {
     console.log("mqtt client on connect");
     console.log("Status:",mqttClient.connected);
-    
+
     mqttClient.subscribe('iot-2/cmd/'+command+'/fmt/json', {qos : 0}, function(err, granted) {
       if (err) {
-        console.log('MQTT client is not connected to IBM IoT Cloud');
+        console.log('MQTT client is not connected to IBM IoT Cloud:', err);
         mqttClient = null;
       } 
       else {
@@ -59,7 +63,7 @@ function start(deviceId, apiKey, apiToken, mqttHost, mqttPort, carid, startlane,
     callback(carid, startlane, mqttClient);
   });
 
-  callback(carid, startlane, mqttClient);
+  // callback(carid, startlane, mqttClient);
 }
 
 module.exports = function() {
@@ -89,10 +93,11 @@ module.exports = function() {
         console.log("Carid:",cfg.carid);
         console.log("Deviceid:",cfg.deviceid);
         console.log("DeviceType:",cfg.devicetype);
+        console.log("APIKey:",cfg.apikey);
 
         if (cfg.deviceid) {
           var org = cfg.apikey.split('-')[1];
-          console.log('Starting connection to IoT: ',org);
+          console.log('Start connection to IBM IoT:',org);
           start(cfg.deviceid, cfg.apikey, cfg.authtoken, org + '.messaging.internetofthings.ibmcloud.com', '1883', cfg.carid, cfg.startlane, cfg.devicetype, callback);
 
         } else {

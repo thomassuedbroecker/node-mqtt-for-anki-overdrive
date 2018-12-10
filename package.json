@@ -5,6 +5,7 @@
   "author": "Niklas Heidloff <niklas_heidloff@de.ibm.com>",
   "dependencies": {
     "async": "0.2.9",
+    "ibmiotf": "^0.2.41",
     "mqtt": "2.18.8",
     "noble": "1.9.1",
     "properties": "1.2.1"
