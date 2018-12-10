@@ -128,12 +128,10 @@ The cars can be steered via [Leap Motion](https://www.leapmotion.com/product/des
 
 ## _Note_
 
-You need to ensure you use **Node.JS 8** is installed on your Machine.
+* Set bluetooth: https://www.macrumors.com/how-to/reset-mac-bluetooth-module/
 
-https://www.macrumors.com/how-to/reset-mac-bluetooth-module/
+* You need to ensure you use **Node.JS 8** is installed on your Machine.
 
-* Node-RED
-Add https://flows.nodered.org/node/node-red-dashboard
+* Node-RED: Add https://flows.nodered.org/node/node-red-dashboard
 
-* MQTT
-Replace MQTT with IBM IoT Foundation https://www.npmjs.com/package/ibmiotf
+* MQTT: Replace MQTT with IBM IoT Foundation https://www.npmjs.com/package/ibmiotf
