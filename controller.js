@@ -29,7 +29,9 @@ var car;
 var lane;
 
 config.read(process.argv[2], function(carId, startlane, mqttClient) {
-console.log('start')
+  console.log('config read');
+  console.log('process.argv[2]',process.argv[2]);
+  
   if (!carId) {
     console.log('Define carid in a properties file and pass in the name of the file as argv');
     process.exit(0);
@@ -131,7 +133,7 @@ noble.on('stateChange', function(state) {
       });
     });
   }
-/*
+
   mqttClient.on('error', function(err) {
     console.error('MQTT client error ' + err);
     mqttClient = null;
@@ -187,7 +189,6 @@ noble.on('stateChange', function(state) {
       invokeCommand(cmd);
     }
   });
-  */
 });
 
 
