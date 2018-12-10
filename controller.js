@@ -17,7 +17,8 @@
 var config = require('./config-wrapper.js')();
 var async = require('async');
 var noble = require('noble');
-var mqtt = require('mqtt');
+//var mqtt = require('mqtt');
+var mqtt = require('ibmiotf');
 var readline = require('readline');
 
 var receivedMessages = require('./receivedMessages.js')();
@@ -36,6 +37,7 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
     console.log('Define carid in a properties file and pass in the name of the file as argv');
     process.exit(0);
   }
+
   lane = startlane;
   console.log("Car:"+carId+"  Lane:"+lane);
 
@@ -139,18 +141,25 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
     });
   }
 
+  mqttClient.connect();
+
+  mqttClient.on('connect', function() {
+    console.log("mqtt client connected"); 
+  });
+
   mqttClient.on('error', function(err) {
     console.error('MQTT client error ' + err);
     mqttClient = null;
   });
+
   mqttClient.on('close', function() {
     console.log('MQTT client closed');
     mqttClient = null;
   });
 
-  mqttClient.on('message', function(topic, message, packet) {
+  mqttClient.on('command', function(topic, format, message, packet) {
     var msg = JSON.parse(message.toString());
-    console.log('Message received from IBM Cloud');
+    console.log('Message received from IBM Cloud: ', msg.toString());
     
     if (msg.d.action == '#s') {
       var cmd = "s";
@@ -242,7 +251,7 @@ function invokeCommand(cmd) {
     if (writeCharacteristic) { 
       writeCharacteristic.write(message, false, function(err) {
         if (!err) {
-          //console.log('Command sent');
+          console.log('Command sent');
         }
         else {
           console.log('Error sending command');

@@ -15,13 +15,14 @@
 //------------------------------------------------------------------------------
 
 //var mqtt = require('mqtt');
-var mqtt = require('ibmiotf');
+var mqtt = require('ibmiotf'); //https://www.npmjs.com/package/ibmiotf
 var properties = require('properties');
 
-function start(deviceId, apiKey, apiToken, mqttHost, mqttPort, carid, startlane, devicetype, callback) {
+function start(deviceId, apiKey, apiToken, mqttHost, mqttPort, carid, startlane, devicetype, authtoken, callback) {
   
   console.log("deviceId:",deviceId );
-  console.log("apiKey:",apiKey );
+  console.log("deviceId:",authtoken );
+  console.log("apiKey:", apiKey );
   console.log("apiToken:", apiToken );
   console.log("mqttHost:", mqttHost );
   console.log("mqttPort:", mqttPort );
@@ -35,21 +36,35 @@ function start(deviceId, apiKey, apiToken, mqttHost, mqttPort, carid, startlane,
 
   console.log("Connection string: " + "mqtt://" + mqttHost + ":" + mqttPort);
 
+  var config = {
+    "org" : org,
+    "id" : deviceId,
+    "domain": "internetofthings.ibmcloud.com",
+    "type" : devicetype,
+    "auth-method" : "token",
+    "auth-token" : authtoken,
+    "use-client-certs": false,
+  };
+  
+  /*
   var mqttClient = mqtt.connect("mqtt://" + mqttHost + ":" + mqttPort, {
               "clientId" : clientId,
               "keepalive" : 30,
-              //"username" : "use-token-auth",
-              "username" : apiKey,
+              "username" : "use-token-auth",
+              //"username" : apiKey,
               "password" : apiToken
               //"useSSL": true
             });
-
-  console.log("Status:",mqttClient.connected);
+  */
+  var mqttClient = new mqtt.IotfDevice(config);
+  
+  mqttClient.connect();
 
   mqttClient.on('connect', function() {
-    console.log("mqtt client on connect");
-    console.log("Status:",mqttClient.connected);
+    console.log("mqtt client on connected");  
+    // mqttClient.publish("status","json",'{"d" : { "cpu" : 60, "mem" : 50 }}');
 
+    /*
     mqttClient.subscribe('iot-2/cmd/'+command+'/fmt/json', {qos : 0}, function(err, granted) {
       if (err) {
         console.log('MQTT client is not connected to IBM IoT Cloud:', err);
@@ -59,6 +74,7 @@ function start(deviceId, apiKey, apiToken, mqttHost, mqttPort, carid, startlane,
         console.log('MQTT client connected to IBM IoT Cloud');
       }
     });
+    */
 
     callback(carid, startlane, mqttClient);
   });
@@ -93,12 +109,14 @@ module.exports = function() {
         console.log("Carid:",cfg.carid);
         console.log("Deviceid:",cfg.deviceid);
         console.log("DeviceType:",cfg.devicetype);
+        console.log("authtoken:",cfg.authtoken);
         console.log("APIKey:",cfg.apikey);
+        console.log("APIToken:",cfg.apitoken);
 
         if (cfg.deviceid) {
           var org = cfg.apikey.split('-')[1];
           console.log('Start connection to IBM IoT:',org);
-          start(cfg.deviceid, cfg.apikey, cfg.authtoken, org + '.messaging.internetofthings.ibmcloud.com', '1883', cfg.carid, cfg.startlane, cfg.devicetype, callback);
+          start(cfg.deviceid, cfg.apikey, cfg.apitoken, org + '.messaging.internetofthings.ibmcloud.com', '1883', cfg.carid, cfg.startlane, cfg.devicetype, cfg.authtoken, callback);
 
         } else {
           callback(cfg.carid, cfg.startlane, null);
