@@ -6,7 +6,8 @@ The [node-mqtt-for-anki-overdrive](https://github.com/IBM-Bluemix/node-mqtt-for-
 * Controller (Node.js application) running on MacBooks or notebooks to invoke commands and receive messages via CLI (command line interface) using the Anki Drive [Bluebooth Low Energy](http://developer.anki.com/drive-sdk/docs/programming-guide) interface.
 * MQTT interface to invoke commands from cloud platforms like [IBM Bluemix](https://bluemix.net) and receive events from cars in the cloud. This allows for example to build collision prevention software as demonstrated below.
 
-In order to run this project I used the [Anki Overdrive](https://anki.com/en-us/overdrive/starter-kit) Starter Kit. Additionally you need a device to run the Node.js application which also supports Bluetooth Low Energy. I tested it with a MacBook Pro successully (without additional adapter). Check out the [photo](https://raw.githubusercontent.com/IBM-Bluemix/node-mqtt-for-anki-overdrive/master/screenshots/photo.jpg) of the setup.
+In order to run this project I used the [Anki Overdrive](https://anki.com/en-us/overdrive/starter-kit) Starter Kit. Additionally you need a device to run the **Node.js application** which also supports **Bluetooth Low Energy**. 
+I tested it with a MacBook Pro successully (without additional adapter). Check out the [photo](https://raw.githubusercontent.com/IBM-Bluemix/node-mqtt-for-anki-overdrive/master/screenshots/photo.jpg) of the setup.
 
 [![Anki Overdrive Bluemix Demo Presentation](https://raw.githubusercontent.com/IBM-Bluemix/node-mqtt-for-anki-overdrive/master/screenshots/deck.png)](http://www.slideshare.net/niklasheidloff/ibm-bluemix-demo-with-anki-overdrive-cars)
 
@@ -72,9 +73,10 @@ In order to perform the following steps, you need to register on [Bluemix](https
 
 Next create a new Bluemix application based on the [Internet of Things Foundation Starter](https://console.ng.bluemix.net/catalog/starters/internet-of-things-foundation-starter/). After this add the [Internet of Things Foundation](https://console.ng.bluemix.net/catalog/services/internet-of-things-foundation/) service to it.
 
-For each car you need to register a device with the Internet of Things Foundation dashboard. As device type use 'ankisupercar'. As device names use 'nh-groundshock' and 'nh-skull'. You can also use other device names but in this case you'll have to do some changes to the Node-RED flow later. After you've registered the device(s) copy the 'authtoken'(s) in the config file(s).
+For **each car you need to register** a device with the Internet of Things Foundation dashboard. 
+As device type use **ankisupercar**. As device names use **nh-groundshock** and **nh-skull**. You can also use other device names but in this case you'll have to do some changes to the Node-RED flow later. After you've registered the device(s) copy the **authtoken**(s) in the config file(s).
 
-In the last step you need to create a new application key in the dashboard. The 'apikey' and the 'apitoken' need to be copied in the config file(s) as well.
+In the last step you need to create a new application key in the dashboard. The **apikey** and the **apitoken** need to be copied in the config file(s) as well. Set the role for the API key to **Standard Application**.
 
 Open Node-RED in a browser, for example http://anki.mybluemix.net/red/#. Copy the content of [node-red.json](https://github.com/IBM-Bluemix/node-mqtt-for-anki-overdrive/blob/master/node-red.json) in the clipboard, import it into Node-RED and deploy the flow.
 
@@ -121,3 +123,11 @@ Controlling the Cars via Leap Motion
 ================================================================================
 
 The cars can be steered via [Leap Motion](https://www.leapmotion.com/product/desktop). Follow in instructions in the separate project [Sample to connect Leap Motion with Bluemix](https://github.com/IBM-Bluemix/sample-leapmotion-bluemix) and check out the [screenshots](https://github.com/IBM-Bluemix/sample-leapmotion-bluemix/tree/master/screenshots). The commands from Leap Motion are received in the [Node-RED flow](https://github.com/IBM-Bluemix/node-mqtt-for-anki-overdrive/blob/master/node-red-speech-kinect-leap.json) and then forwarded to the cars.
+
+---
+
+## _Note_
+
+You need to ensure you use **Node.JS 8** is installed on your Machine.
+
+https://www.macrumors.com/how-to/reset-mac-bluetooth-module/

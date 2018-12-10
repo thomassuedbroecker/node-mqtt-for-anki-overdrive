@@ -29,24 +29,42 @@ var car;
 var lane;
 
 config.read(process.argv[2], function(carId, startlane, mqttClient) {
-
+console.log('start')
   if (!carId) {
     console.log('Define carid in a properties file and pass in the name of the file as argv');
     process.exit(0);
   }
   lane = startlane;
-
+  console.log("Car",carId);
+  /*
   noble.startScanning();
   setTimeout(function() {
     noble.stopScanning();
   }, 2000);
+  */
+
+noble.on('stateChange', function(state) {
+  if (state === 'poweredOn') {
+    noble.startScanning();
+
+    setTimeout(function() {
+       noble.stopScanning();
+       process.exit(0);
+     }, 2000);
+  } else {
+    noble.stopScanning();
+  }
+});
 
   noble.on('discover', function(peripheral) {
+    console.log('service id')
+    console.log(peripheral.id)
     if (peripheral.id === carId) {
       noble.stopScanning();
 
       var advertisement = peripheral.advertisement;
       var serviceUuids = JSON.stringify(peripheral.advertisement.serviceUuids);
+      console.log(serviceUuids)
       if(serviceUuids.indexOf("be15beef6186407e83810bd89c4d8df4") > -1) {
         console.log('Car discovered. ID: ' + peripheral.id); 
         car = peripheral;
@@ -113,7 +131,7 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
       });
     });
   }
-
+/*
   mqttClient.on('error', function(err) {
     console.error('MQTT client error ' + err);
     mqttClient = null;
@@ -169,7 +187,9 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
       invokeCommand(cmd);
     }
   });
+  */
 });
+
 
 function init(startlane) {
   // turn on sdk and set offset

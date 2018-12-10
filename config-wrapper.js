@@ -44,6 +44,8 @@ function start(deviceId, apiKey, apiToken, mqttHost, mqttPort, carid, startlane,
 module.exports = function() {
   return {
     "read" : function(propertiesFileName, callback) {
+      callback('3dab011798b14eedbb94ff1c07d44bfc', '3', null)
+
       if (!propertiesFileName) {
         propertiesFileName = 'config-gs.properties';
         console.error('Default configuration file config-gs.properties is used');
