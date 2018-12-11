@@ -95,7 +95,7 @@ module.exports = function() {
 	    message = new Buffer(12);
 	    message.writeUInt8(11, 0);
 	    message.writeUInt8(0x25, 1);
-		message.writeInt16LE(250, 2);
+		  message.writeInt16LE(250, 2);
 	    message.writeInt16LE(1000, 4);    
 	    message.writeFloatLE(offset, 6);      
 	  }

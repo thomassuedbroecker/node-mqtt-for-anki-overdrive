@@ -18,7 +18,7 @@ var config = require('./config-wrapper.js')();
 var async = require('async');
 var noble = require('noble');
 //var mqtt = require('mqtt');
-var mqtt = require('ibmiotf');
+var mqttClient = require('ibmiotf');
 var readline = require('readline');
 
 var receivedMessages = require('./receivedMessages.js')();
@@ -29,12 +29,14 @@ var writeCharacteristic;
 var car;
 var lane;
 var characteristic_CONSTANTE='be15bee06186407e83810bd89c4d8df4';
-characteristic_CONSTANTE_STRING="be15beef6186407e83810bd89c4d8df4";
+var characteristic_CONSTANTE_STRING="be15beef6186407e83810bd89c4d8df4";
 
-config.read(process.argv[2], function(carId, startlane, mqttClient) {
+config.read(process.argv[2], function(carId, startlane, mqttClient_ext) {
   console.log('config read');
   console.log('process.argv[2]',process.argv[2]);
-  
+  mqttClient = mqttClient_ext;
+  mqttClient_ext = null;
+
   if (!carId) {
     console.log('Define carid in a properties file and pass in the name of the file as argv');
     process.exit(0);
@@ -48,21 +50,6 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
     noble.stopScanning();
   }, 2000);
 
-  /*
-  noble.on('stateChange', function(state) {
-   if (state === 'poweredOn') {
-    noble.startScanning();
-
-    setTimeout(function() {
-       noble.stopScanning();
-       process.exit(0);
-     }, 2000);
-   } else {
-    noble.stopScanning();
-   }
-  });
-  */
-
   noble.on('discover', function(peripheral) {
     console.log('service id: ', peripheral.id)
     if (peripheral.id === carId) {
@@ -72,7 +59,7 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
       var advertisement = peripheral.advertisement;
       var serviceUuids = JSON.stringify(peripheral.advertisement.serviceUuids);
       console.log(serviceUuids)
-      if(serviceUuids.indexOf(characteristic_CONSTANTE_STRING) > -1) {
+      if(serviceUuids.indexOf("be15beef6186407e83810bd89c4d8df4") > -1) {
         console.log('Car discovered. ID: ' + peripheral.id); 
         car = peripheral;
         setUp(car);
@@ -92,6 +79,9 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
         
         service.discoverCharacteristics([], function(error, characteristics) {
           var characteristicIndex = 0;
+          if(error){
+            console.log("Error: ", error.toString());
+          }
 
           async.whilst(
             function () {
@@ -101,8 +91,8 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
               var characteristic = characteristics[characteristicIndex];
               async.series([
                 function(callback) {
-                  console.log('characteristic.uuid');
-                  if (characteristic.uuid == characteristic_CONSTANTE) {
+                  // console.log('characteristic.uuid');
+                  if (characteristic.uuid == 'be15bee06186407e83810bd89c4d8df4') {
                     readCharacteristic = characteristic;
                     
                     console.log('used characteristic.uuid', readCharacteristic);
@@ -114,11 +104,11 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
                     });
                   }
                   
-                  console.log('characteristic.uuid');
-                  if (characteristic.uuid == characteristic_CONSTANTE) {                        
+                  // console.log('characteristic.uuid');
+                  if (characteristic.uuid == 'be15bee06186407e83810bd89c4d8df4') {                        
                     writeCharacteristic = characteristic;
                     
-                    console.log('used characteristic.uuid', readCharacteristic);
+                    console.log('used characteristic.uuid', characteristic.uuid);
                     init(startlane); 
 
                     // this characterstic doesn't seem to be used for receiving data
@@ -143,7 +133,7 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
     });
   }
 
-  mqttClient.connect();
+  // mqttClient.connect();
 
   mqttClient.on('connect', function() {
     console.log("mqtt client connected"); 
@@ -235,12 +225,12 @@ function init(startlane) {
           console.log('Enter a command: help, s (speed), c (change lane), e (end/stop), l (lights), lp (lights pattern), o (offset), sdk, ping, bat, ver, q (quit)');
         }
         else {
-          console.log('Initialization error');
+          console.log('Initialization error', err.toString());
         }
       });      
     }
     else {
-      console.log('Initialization error');
+      console.log('Initialization error', err.toString());
     }
   });
 }
@@ -256,7 +246,7 @@ function invokeCommand(cmd) {
           console.log('Command sent');
         }
         else {
-          console.log('Error sending command');
+          console.log('Error sending command', err.toString());
         }
       });
     } else {

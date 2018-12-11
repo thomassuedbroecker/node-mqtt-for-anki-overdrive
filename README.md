@@ -130,7 +130,7 @@ The cars can be steered via [Leap Motion](https://www.leapmotion.com/product/des
 
 * Set bluetooth: https://www.macrumors.com/how-to/reset-mac-bluetooth-module/
 
-* You need to ensure you use **Node.JS 8** is installed on your Machine.
+* You need to ensure **Node.JS 8** is installed on your Machine.
 
 * Node-RED: Add https://flows.nodered.org/node/node-red-dashboard
 

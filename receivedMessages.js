@@ -27,16 +27,22 @@ module.exports = function() {
 	      console.log('Message: ' + messageId, data, desc);
 	      
 	      if (mqttClient) {
-	      	mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
+					/*
+					mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
 	          "d" : {
 	            "description" : desc,
 	            "date": date
 	          }
 	        }), function () {
-	        }); 
-		  }
+					});*/
+					mqttClient.publish("status", "JSON", JSON.stringify({
+	          "d" : {
+	            "description" : desc,
+	            "date": date
+	          }
+	        }));
+		    }
 	    }
-
 	    else if (messageId == '25') {
 	      // example: <Buffer 05 19 6e 26 00 00>
 	      var desc = 'Version Received';
@@ -44,33 +50,50 @@ module.exports = function() {
 	      console.log('Message: ' + messageId, data, desc + ' - version: ' + version);
 
 	      if (mqttClient) {
-	      	mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
+					/*
+					mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
 	          "d" : {
 	            "description" : desc,
 	            "date": date,
 	            "version": version
 	          }
 	        }), function () {
-	        }); 
-		  }
+					}); 
+					*/
+					mqttClient.publish("status", "JSON", JSON.stringify({
+	          "d" : {
+	            "description" : desc,
+	            "date": date,
+	            "version": version
+	          }
+	        }));
+		    }
 	    }
-
-	    else if (messageId == '27') {
+      else if (messageId == '27') {
 	      // example: <Buffer 03 1b 50 0f>
 	      var desc = 'Battery Level Received';
 	      var level = data.readUInt16LE(2);
 	      console.log('Message: ' + messageId, data, desc + ' - level: ' + level);
 
 	      if (mqttClient) {
-	      	mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
+					/*
+					mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
 	          "d" : {
 	            "description" : desc,
 	            "date": date,
 	            "level": level
 	          }
 	        }), function () {
-	        }); 
-		  }
+					});
+					*/
+					mqttClient.publish("status", "JSON", JSON.stringify({
+	          "d" : {
+	            "description" : desc,
+	            "date": date,
+	            "level": level
+	          }
+					}));
+				}
 	    }
 
 	    else if (messageId == '39') { 
@@ -91,7 +114,8 @@ module.exports = function() {
 	      console.log('Message: ' + messageId, data, desc + ' - offset: '  + offset + ' speed: ' + speed + ' - pieceId: '  + pieceId + ' pieceLocation: ' + pieceLocation);;
 	     
 	      if (mqttClient) {
-	      	mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
+					/*
+					mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
 	          "d" : {
 	            "description" : desc,
 	            "date": date,
@@ -101,7 +125,19 @@ module.exports = function() {
 	            "pieceLocation": pieceLocation
 	          }
 	        }), function () {
-	        }); 
+					}); 
+					*/
+					mqttClient.publish("status", "JSON", JSON.stringify({
+	          "d" : {
+	            "description" : desc,
+	            "date": date,
+	            "offset": offset,
+	            "speed": speed,
+	            "pieceId": pieceId,
+	            "pieceLocation": pieceLocation
+	          }
+	        }));
+					
 		  }
 	    }
 
@@ -112,14 +148,22 @@ module.exports = function() {
 		  console.log('Message: ' + messageId, data, desc + ' - offset: '  + offset);
 
 		  if (mqttClient) {
-	      	mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
+				  /*
+	        mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
 	          "d" : {
 	            "description" : desc,
 	            "date": date,
 	            "offset": offset
 	          }
 	        }), function () {
-	        }); 
+					});*/
+					mqttClient.publish("status", "JSON", JSON.stringify({
+	          "d" : {
+	            "description" : desc,
+	            "date": date,
+	            "offset": offset
+	          }
+	        }));
 		  }
 	    }
 
@@ -129,13 +173,21 @@ module.exports = function() {
 	      console.log('Message: ' + messageId, data, desc);
 
 	      if (mqttClient) {
+					/*
 	      	mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
 	          "d" : {
 	            "description" : desc,
 	            "date": date
 	          }
 	        }), function () {
-	        }); 
+					});
+					*/
+					mqttClient.publish("status", "JSON", JSON.stringify({
+	          "d" : {
+	            "description" : desc,
+	            "date": date
+	          }
+	        }));
 		  }
 	    }
 
@@ -146,14 +198,21 @@ module.exports = function() {
 	      console.log('Message: ' + messageId, data, desc + ' - offset: '  + offset);
 
 	      if (mqttClient) {
-	      	mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
+	      	/* mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
 	          "d" : {
 	            "description" : desc,
 	            "date": date,
 	            "offset": offset
 	          }
 	        }), function () {
-	        }); 
+					}); */
+					mqttClient.publish("status", "JSON", JSON.stringify({
+	          "d" : {
+	            "description" : desc,
+	            "date": date,
+	            "offset": offset
+	          }
+	        }));
 		  }
 	    }
 
@@ -168,12 +227,13 @@ module.exports = function() {
 	    }
 
 	    else if (messageId == '65') {
-	      // example: <Buffer 0e 41 9a 99 7f 42 9a 99 7f 42 00 00 00 02 81>
-	      var desc = 'Changed Offset (not documented)';
+	    // example: <Buffer 0e 41 9a 99 7f 42 9a 99 7f 42 00 00 00 02 81>
+	    var desc = 'Changed Offset (not documented)';
 		  var offset = data.readFloatLE(2);
 		  console.log('Message: ' + messageId, data, desc + ' - offset: '  + offset);
 
 		  if (mqttClient) {
+				  /*
 	      	mqttClient.publish('iot-2/evt/' + messageId + '/fmt/json', JSON.stringify({
 	          "d" : {
 	            "description" : desc,
@@ -181,7 +241,14 @@ module.exports = function() {
 	            "offset": offset
 	          }
 	        }), function () {
-	        }); 
+					});*/
+					mqttClient.publish("status", "JSON", JSON.stringify({
+						"d" : {
+	            "description" : desc,
+	            "date": date,
+	            "offset": offset
+	          }
+	        }));
 		  }
 	    }
 
