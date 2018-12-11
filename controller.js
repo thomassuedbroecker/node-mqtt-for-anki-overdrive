@@ -28,6 +28,8 @@ var readCharacteristic;
 var writeCharacteristic;
 var car;
 var lane;
+var characteristic_CONSTANTE='be15bee06186407e83810bd89c4d8df4';
+characteristic_CONSTANTE_STRING="be15beef6186407e83810bd89c4d8df4";
 
 config.read(process.argv[2], function(carId, startlane, mqttClient) {
   console.log('config read');
@@ -70,7 +72,7 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
       var advertisement = peripheral.advertisement;
       var serviceUuids = JSON.stringify(peripheral.advertisement.serviceUuids);
       console.log(serviceUuids)
-      if(serviceUuids.indexOf("be15beef6186407e83810bd89c4d8df4") > -1) {
+      if(serviceUuids.indexOf(characteristic_CONSTANTE_STRING) > -1) {
         console.log('Car discovered. ID: ' + peripheral.id); 
         car = peripheral;
         setUp(car);
@@ -100,7 +102,7 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
               async.series([
                 function(callback) {
                   console.log('characteristic.uuid');
-                  if (characteristic.uuid == 'be15bee06186407e83810bd89c4d8df4') {
+                  if (characteristic.uuid == characteristic_CONSTANTE) {
                     readCharacteristic = characteristic;
                     
                     console.log('used characteristic.uuid', readCharacteristic);
@@ -113,7 +115,7 @@ config.read(process.argv[2], function(carId, startlane, mqttClient) {
                   }
                   
                   console.log('characteristic.uuid');
-                  if (characteristic.uuid == 'be15bee16186407e83810bd89c4d8df4') {                        
+                  if (characteristic.uuid == characteristic_CONSTANTE) {                        
                     writeCharacteristic = characteristic;
                     
                     console.log('used characteristic.uuid', readCharacteristic);
