@@ -19,8 +19,12 @@ module.exports = function() {
     "handle" : function(data, mqttClient) {    
 
 	    var messageId = data.readUInt8(1);
-	    var date = new Date();
-
+			var date = new Date();
+		
+			mqttClient=null;
+			
+			console.log("Info", messageId);
+			
 	    if (messageId == '23') {
 	      // example: <Buffer 01 17>
 	      var desc = 'Ping Response Received';

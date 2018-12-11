@@ -109,7 +109,8 @@ config.read(process.argv[2], function(carId, startlane, mqttClient_ext) {
                     writeCharacteristic = characteristic;
                     
                     console.log('used characteristic.uuid', characteristic.uuid);
-                    init(startlane); 
+                    // Set sdk
+                    // init(startlane); 
 
                     // this characterstic doesn't seem to be used for receiving data
                     characteristic.on('read', function(data, isNotification) {
@@ -205,6 +206,7 @@ function init(startlane) {
   initMessage.writeUInt8(0x90, 1);
   initMessage.writeUInt8(0x01, 2);
   initMessage.writeUInt8(0x01, 3);
+  // Start sdk
   writeCharacteristic.write(initMessage, false, function(err) {
     if (!err) {
       var initialOffset = 0.0;

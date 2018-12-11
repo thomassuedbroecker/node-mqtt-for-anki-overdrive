@@ -140,3 +140,8 @@ The cars can be steered via [Leap Motion](https://www.leapmotion.com/product/des
 - add UI to Node-RED
 - add additional parameter in the .properies file
 - changes code inside controller and config.wrapper
+
+* Information
+- ANKI Programming Guide http://anki.github.io/drive-sdk/docs/programming-guide
+- ANKI Drive Forum  Google https://groups.google.com/forum/#!forum/anki-drive-android-group
+- ANKI Developer https://forums.anki.com/login
