@@ -129,19 +129,16 @@ The cars can be steered via [Leap Motion](https://www.leapmotion.com/product/des
 ## _Note_
 
 * Set bluetooth: https://www.macrumors.com/how-to/reset-mac-bluetooth-module/
-
 * You need to ensure **Node.JS 8** is installed on your Machine.
-
 * Node-RED: Add https://flows.nodered.org/node/node-red-dashboard
-
 * MQTT: Replace MQTT with IBM IoT Foundation https://www.npmjs.com/package/ibmiotf
 
-* Changes
+* **Changes**
 - add UI to Node-RED
 - add additional parameter in the .properies file
-- changes code inside controller and config.wrapper
+- change code
 
-* Information
+* **Information**
 - ANKI Programming Guide http://anki.github.io/drive-sdk/docs/programming-guide
 - ANKI Drive Forum  Google https://groups.google.com/forum/#!forum/anki-drive-android-group
 - ANKI Developer https://forums.anki.com/login
