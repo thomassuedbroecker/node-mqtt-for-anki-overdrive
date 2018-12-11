@@ -135,3 +135,8 @@ The cars can be steered via [Leap Motion](https://www.leapmotion.com/product/des
 * Node-RED: Add https://flows.nodered.org/node/node-red-dashboard
 
 * MQTT: Replace MQTT with IBM IoT Foundation https://www.npmjs.com/package/ibmiotf
+
+* Changes
+- add UI to Node-RED
+- add additional parameter in the .properies file
+- changes code inside controller and config.wrapper
