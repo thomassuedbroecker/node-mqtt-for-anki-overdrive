@@ -28,8 +28,9 @@ var readCharacteristic;
 var writeCharacteristic;
 var car;
 var lane;
-var characteristic_CONSTANTE='be15bee06186407e83810bd89c4d8df4';
-var characteristic_CONSTANTE_STRING="be15beef6186407e83810bd89c4d8df4";
+var characteristic_CONSTANTE_READ='be15bee06186407e83810bd89c4d8df4';
+var characteristic_CONSTANTE_WRITE='be15bee16186407e83810bd89c4d8df4';
+var characteristic_CONSTANTE_SERVICE="be15beef6186407e83810bd89c4d8df4";
 
 config.read(process.argv[2], function(carId, startlane, mqttClient_ext) {
   console.log('config read');
@@ -59,7 +60,7 @@ config.read(process.argv[2], function(carId, startlane, mqttClient_ext) {
       var advertisement = peripheral.advertisement;
       var serviceUuids = JSON.stringify(peripheral.advertisement.serviceUuids);
       console.log(serviceUuids)
-      if(serviceUuids.indexOf("be15beef6186407e83810bd89c4d8df4") > -1) {
+      if(serviceUuids.indexOf(characteristic_CONSTANTE_SERVICE) > -1) {
         console.log('Car discovered. ID: ' + peripheral.id); 
         car = peripheral;
         setUp(car);
@@ -105,15 +106,15 @@ config.read(process.argv[2], function(carId, startlane, mqttClient_ext) {
                   }
                   
                   // console.log('characteristic.uuid');
-                  if (characteristic.uuid == 'be15bee06186407e83810bd89c4d8df4') {                        
+                  if (characteristic.uuid == 'be15bee16186407e83810bd89c4d8df4') {                        
                     writeCharacteristic = characteristic;
                     
-                    console.log('used characteristic.uuid', characteristic.uuid);
+                    console.log('used write characteristic.uuid', characteristic.uuid);
                     // Set sdk
-                    // init(startlane); 
+                    init(startlane); 
 
                     // this characterstic doesn't seem to be used for receiving data
-                    characteristic.on('read', function(data, isNotification) {
+                    characteristic.on('write', function(data, isNotification) {
                       console.log('Data received - writeCharacteristic', data);
                     });                          
                   }
