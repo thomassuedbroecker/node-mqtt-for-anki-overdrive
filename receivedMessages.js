@@ -21,7 +21,7 @@ module.exports = function() {
 	    var messageId = data.readUInt8(1);
 			var date = new Date();
 		
-			mqttClient=null;
+			// mqttClient=null;
 			
 			console.log("Info", messageId);
 			
@@ -39,8 +39,9 @@ module.exports = function() {
 	          }
 	        }), function () {
 					});*/
-					mqttClient.publish("status", "JSON", JSON.stringify({
+					mqttClient.publish(""+messageId+"", "JSON", JSON.stringify({
 	          "d" : {
+							"messageId" : messageId,
 	            "description" : desc,
 	            "date": date
 	          }
@@ -64,8 +65,9 @@ module.exports = function() {
 	        }), function () {
 					}); 
 					*/
-					mqttClient.publish("status", "JSON", JSON.stringify({
+					mqttClient.publish(""+messageId+"", "JSON", JSON.stringify({
 	          "d" : {
+							"messageId" : messageId,
 	            "description" : desc,
 	            "date": date,
 	            "version": version
@@ -90,8 +92,9 @@ module.exports = function() {
 	        }), function () {
 					});
 					*/
-					mqttClient.publish("status", "JSON", JSON.stringify({
+					mqttClient.publish(""+messageId+"", "JSON", JSON.stringify({
 	          "d" : {
+							"messageId" : messageId,
 	            "description" : desc,
 	            "date": date,
 	            "level": level
@@ -131,8 +134,9 @@ module.exports = function() {
 	        }), function () {
 					}); 
 					*/
-					mqttClient.publish("status", "JSON", JSON.stringify({
+					mqttClient.publish(""+messageId+"", "JSON", JSON.stringify({
 	          "d" : {
+							"messageId" : messageId,
 	            "description" : desc,
 	            "date": date,
 	            "offset": offset,
@@ -161,8 +165,9 @@ module.exports = function() {
 	          }
 	        }), function () {
 					});*/
-					mqttClient.publish("status", "JSON", JSON.stringify({
+					mqttClient.publish(""+messageId+"", "JSON", JSON.stringify({
 	          "d" : {
+							"messageId" : messageId,
 	            "description" : desc,
 	            "date": date,
 	            "offset": offset
@@ -172,7 +177,7 @@ module.exports = function() {
 	    }
 
 	    else if (messageId == '43') { 
-		  // example: <Buffer 01 2b>
+		    // example: <Buffer 01 2b>
 	      var desc = 'Vehicle Delocalized Received';
 	      console.log('Message: ' + messageId, data, desc);
 
@@ -186,8 +191,9 @@ module.exports = function() {
 	        }), function () {
 					});
 					*/
-					mqttClient.publish("status", "JSON", JSON.stringify({
+					mqttClient.publish(""+messageId+"", "JSON", JSON.stringify({
 	          "d" : {
+							"messageId" : messageId,
 	            "description" : desc,
 	            "date": date
 	          }
@@ -210,8 +216,9 @@ module.exports = function() {
 	          }
 	        }), function () {
 					}); */
-					mqttClient.publish("status", "JSON", JSON.stringify({
+					mqttClient.publish(""+messageId+"", "JSON", JSON.stringify({
 	          "d" : {
+							"messageId" : messageId,
 	            "description" : desc,
 	            "date": date,
 	            "offset": offset
@@ -246,8 +253,9 @@ module.exports = function() {
 	          }
 	        }), function () {
 					});*/
-					mqttClient.publish("status", "JSON", JSON.stringify({
+					mqttClient.publish(""+messageId+"", "JSON", JSON.stringify({
 						"d" : {
+							"messageId" : messageId,
 	            "description" : desc,
 	            "date": date,
 	            "offset": offset

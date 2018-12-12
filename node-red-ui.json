@@ -16,7 +16,28 @@
     {
         "id": "cc25246.b9569d8",
         "type": "tab",
-        "label": "Info",
+        "label": "Debug and test",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "77d21b86.6dece4",
+        "type": "tab",
+        "label": "Manage speed",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "a00f83bc.8de21",
+        "type": "tab",
+        "label": "Manage version",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "81835bc6.bfd1a8",
+        "type": "tab",
+        "label": "Manage battery",
         "disabled": false,
         "info": ""
     },
@@ -123,7 +144,7 @@
         "z": "",
         "name": "Basics groundshock",
         "icon": "dashboard",
-        "order": 1
+        "order": 3
     },
     {
         "id": "7de86cb7.de8d64",
@@ -162,7 +183,7 @@
         "z": "",
         "name": "Basics skull",
         "icon": "dashboard",
-        "order": 2
+        "order": 4
     },
     {
         "id": "593d0166.449e1",
@@ -192,7 +213,7 @@
         "z": "",
         "name": "Collision Prevention",
         "icon": "dashboard",
-        "order": 3
+        "order": 2
     },
     {
         "id": "84319a9.5850b68",
@@ -204,6 +225,74 @@
         "disp": true,
         "width": "6",
         "collapse": false
+    },
+    {
+        "id": "50650507.089b6c",
+        "type": "ui_tab",
+        "z": "",
+        "name": "All",
+        "icon": "dashboard",
+        "order": 1
+    },
+    {
+        "id": "bf34d6be.ddd018",
+        "type": "ui_group",
+        "z": "",
+        "name": "Speeds",
+        "tab": "50650507.089b6c",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "f03a14ed.92b8b8",
+        "type": "ui_group",
+        "z": "",
+        "name": "Version",
+        "tab": "50650507.089b6c",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "20b17a3.45d1086",
+        "type": "ui_group",
+        "z": "",
+        "name": "Battery",
+        "tab": "50650507.089b6c",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "976fcff1.37219",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "f03a14ed.92b8b8",
+        "order": 3,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "284fccf6.ba8d94",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "bf34d6be.ddd018",
+        "order": 2,
+        "width": 1,
+        "height": 1
+    },
+    {
+        "id": "de7924c2.d47788",
+        "type": "ui_spacer",
+        "name": "spacer",
+        "group": "20b17a3.45d1086",
+        "order": 4,
+        "width": 1,
+        "height": 1
     },
     {
         "id": "3e77d543.c1882a",
@@ -344,6 +433,7 @@
         "eventCommandType": "update",
         "format": "json",
         "data": "temp:10",
+        "qos": "",
         "name": "Send to IBM IoT Platform",
         "service": "registered",
         "x": 570,
@@ -487,7 +577,7 @@
         "type": "debug",
         "z": "255ec454.468184",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "payload.d",
         "x": 645.5555534362793,
@@ -975,7 +1065,7 @@
         "name": "Speed Medium",
         "topic": "",
         "payload": "",
-        "payloadType": "none",
+        "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1150,7 +1240,7 @@
         "name": "Battery",
         "topic": "",
         "payload": "",
-        "payloadType": "none",
+        "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
@@ -1359,7 +1449,7 @@
         "z": "255ec454.468184",
         "authentication": "boundService",
         "apiKey": "",
-        "inputType": "cmd",
+        "inputType": "evt",
         "logicalInterface": "",
         "ruleId": "",
         "deviceId": "nh-groundshock",
@@ -1378,11 +1468,11 @@
         "allCommands": true,
         "allFormats": "",
         "qos": "0",
-        "x": 390,
+        "x": 392,
         "y": 760,
         "wires": [
             [
-                "1f2aab02.e85625"
+                "d539da64.0416e8"
             ]
         ]
     },
@@ -1391,346 +1481,12 @@
         "type": "debug",
         "z": "255ec454.468184",
         "name": "",
-        "active": true,
+        "active": false,
         "console": "false",
         "complete": "payload.d",
-        "x": 640,
+        "x": 780,
         "y": 760,
         "wires": []
-    },
-    {
-        "id": "a476157f.fcbda8",
-        "type": "ibmiot in",
-        "z": "cc25246.b9569d8",
-        "authentication": "boundService",
-        "apiKey": "",
-        "inputType": "cmd",
-        "logicalInterface": "",
-        "ruleId": "",
-        "deviceId": "nh-groundshock",
-        "applicationId": "",
-        "deviceType": "ankisupercar",
-        "eventType": "",
-        "commandType": "",
-        "format": "json",
-        "name": "GroundShock",
-        "service": "registered",
-        "allDevices": false,
-        "allApplications": "",
-        "allDeviceTypes": false,
-        "allLogicalInterfaces": false,
-        "allEvents": true,
-        "allCommands": true,
-        "allFormats": "",
-        "qos": "0",
-        "x": 136,
-        "y": 237,
-        "wires": [
-            [
-                "84db7fed.e0e6b",
-                "103a0796.11b868",
-                "5f19ddb9.be3a54"
-            ]
-        ]
-    },
-    {
-        "id": "84db7fed.e0e6b",
-        "type": "ui_text",
-        "z": "cc25246.b9569d8",
-        "group": "7de86cb7.de8d64",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "command",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 325.5,
-        "y": 238,
-        "wires": []
-    },
-    {
-        "id": "103a0796.11b868",
-        "type": "debug",
-        "z": "cc25246.b9569d8",
-        "name": "all",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "x": 330,
-        "y": 172,
-        "wires": []
-    },
-    {
-        "id": "5f19ddb9.be3a54",
-        "type": "function",
-        "z": "cc25246.b9569d8",
-        "name": "",
-        "func": "var value = msg.payload.d.action;\n\nif (value === \"#s\") {\n  value = msg.payload.d.speed;\n  msg.payload = value;\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 326,
-        "y": 296,
-        "wires": [
-            [
-                "35c26b09.bf0df4"
-            ]
-        ]
-    },
-    {
-        "id": "35c26b09.bf0df4",
-        "type": "ui_gauge",
-        "z": "cc25246.b9569d8",
-        "name": "",
-        "group": "a1e5b971.201a58",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Speed",
-        "label": "Car speed",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "1000",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 480.5,
-        "y": 297,
-        "wires": []
-    },
-    {
-        "id": "e060d4b2.f3b968",
-        "type": "ibmiot in",
-        "z": "cc25246.b9569d8",
-        "authentication": "boundService",
-        "apiKey": "",
-        "inputType": "cmd",
-        "logicalInterface": "",
-        "ruleId": "",
-        "deviceId": "nh-skull",
-        "applicationId": "",
-        "deviceType": "ankisupercar",
-        "eventType": "39",
-        "commandType": "",
-        "format": "json",
-        "name": "Skull",
-        "service": "registered",
-        "allDevices": false,
-        "allApplications": "",
-        "allDeviceTypes": "",
-        "allLogicalInterfaces": false,
-        "allEvents": false,
-        "allCommands": true,
-        "allFormats": "",
-        "qos": "0",
-        "x": 121,
-        "y": 635,
-        "wires": [
-            [
-                "c7efa2ca.66ccd",
-                "a29d2472.b2b178"
-            ]
-        ]
-    },
-    {
-        "id": "c7efa2ca.66ccd",
-        "type": "ui_text",
-        "z": "cc25246.b9569d8",
-        "group": "593d0166.449e1",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "name": "",
-        "label": "command",
-        "format": "{{msg.payload}}",
-        "layout": "row-spread",
-        "x": 329,
-        "y": 635,
-        "wires": []
-    },
-    {
-        "id": "a29d2472.b2b178",
-        "type": "function",
-        "z": "cc25246.b9569d8",
-        "name": "",
-        "func": "var value = msg.payload.d.action;\n\nif (value === \"#s\") {\n  value = msg.payload.d.speed;\n  msg.payload = value;\n}\n\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 323,
-        "y": 703,
-        "wires": [
-            [
-                "3ba54f8b.854bd"
-            ]
-        ]
-    },
-    {
-        "id": "3ba54f8b.854bd",
-        "type": "ui_gauge",
-        "z": "cc25246.b9569d8",
-        "name": "",
-        "group": "8abeca3a.8adc58",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Speed",
-        "label": "Car speed",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "1000",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "x": 477,
-        "y": 703,
-        "wires": []
-    },
-    {
-        "id": "127d18a8.127ae7",
-        "type": "ibmiot out",
-        "z": "cc25246.b9569d8",
-        "authentication": "boundService",
-        "apiKey": "",
-        "outputType": "cmd",
-        "deviceId": "nh-groundshock",
-        "deviceType": "ankisupercar",
-        "eventCommandType": "car",
-        "format": "json",
-        "data": "___",
-        "name": "GroundShock",
-        "service": "registered",
-        "x": 514,
-        "y": 357,
-        "wires": []
-    },
-    {
-        "id": "d3fd8b77.c15a88",
-        "type": "ui_form",
-        "z": "cc25246.b9569d8",
-        "name": "",
-        "label": "Set speed",
-        "group": "7de86cb7.de8d64",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "Speed",
-                "value": "speed",
-                "type": "number",
-                "required": true
-            }
-        ],
-        "formValue": {
-            "speed": ""
-        },
-        "payload": "",
-        "submit": "submit",
-        "cancel": "cancel",
-        "topic": "",
-        "x": 130.5,
-        "y": 357,
-        "wires": [
-            [
-                "4f1387c1.3c0a38"
-            ]
-        ]
-    },
-    {
-        "id": "4f1387c1.3c0a38",
-        "type": "function",
-        "z": "cc25246.b9569d8",
-        "name": "",
-        "func": "var speed = msg.payload.speed;\n\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"\"+speed+\"\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 324,
-        "y": 357,
-        "wires": [
-            [
-                "127d18a8.127ae7"
-            ]
-        ]
-    },
-    {
-        "id": "3f7c023b.6f220e",
-        "type": "ibmiot out",
-        "z": "cc25246.b9569d8",
-        "authentication": "boundService",
-        "apiKey": "",
-        "outputType": "cmd",
-        "deviceId": "nh-skull",
-        "deviceType": "ankisupercar",
-        "eventCommandType": "car",
-        "format": "json",
-        "data": "___",
-        "qos": "",
-        "name": "GroundShock",
-        "service": "registered",
-        "x": 513.5,
-        "y": 758,
-        "wires": []
-    },
-    {
-        "id": "2089c3dd.40007c",
-        "type": "ui_form",
-        "z": "cc25246.b9569d8",
-        "name": "",
-        "label": "Set speed",
-        "group": "593d0166.449e1",
-        "order": 2,
-        "width": 0,
-        "height": 0,
-        "options": [
-            {
-                "label": "Speed",
-                "value": "speed",
-                "type": "number",
-                "required": true
-            }
-        ],
-        "formValue": {
-            "speed": ""
-        },
-        "payload": "",
-        "submit": "submit",
-        "cancel": "cancel",
-        "topic": "",
-        "x": 132,
-        "y": 759,
-        "wires": [
-            [
-                "bd3ff945.d72ea8"
-            ]
-        ]
-    },
-    {
-        "id": "bd3ff945.d72ea8",
-        "type": "function",
-        "z": "cc25246.b9569d8",
-        "name": "",
-        "func": "var speed = msg.payload.speed;\n\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"\"+speed+\"\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "x": 319.5,
-        "y": 758,
-        "wires": [
-            [
-                "3f7c023b.6f220e"
-            ]
-        ]
     },
     {
         "id": "266a88e4.0d0cd8",
@@ -1763,5 +1519,1290 @@
         "x": 841.5,
         "y": 708,
         "wires": []
+    },
+    {
+        "id": "cea64707.be11f8",
+        "type": "ibmiot in",
+        "z": "cc25246.b9569d8",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "devicestate",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-skull",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "39",
+        "commandType": "",
+        "format": "json",
+        "name": "all state event",
+        "service": "registered",
+        "allDevices": true,
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": true,
+        "allEvents": false,
+        "allCommands": true,
+        "allFormats": true,
+        "qos": "0",
+        "x": 128,
+        "y": 381,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "bfa37b1f.9d1028",
+        "type": "debug",
+        "z": "cc25246.b9569d8",
+        "name": "complete msg object",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "true",
+        "x": 485,
+        "y": 465,
+        "wires": []
+    },
+    {
+        "id": "22f7cce3.e3a684",
+        "type": "ibmiot in",
+        "z": "cc25246.b9569d8",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-skull",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "39",
+        "commandType": "",
+        "format": "json",
+        "name": "all event",
+        "service": "registered",
+        "allDevices": true,
+        "allApplications": "",
+        "allDeviceTypes": true,
+        "allLogicalInterfaces": true,
+        "allEvents": true,
+        "allCommands": true,
+        "allFormats": true,
+        "qos": "0",
+        "x": 120,
+        "y": 465,
+        "wires": [
+            [
+                "4c6a0af6.a73c94"
+            ]
+        ]
+    },
+    {
+        "id": "9d96b319.c8e88",
+        "type": "ibmiot in",
+        "z": "cc25246.b9569d8",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-skull",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "39",
+        "commandType": "",
+        "format": "json",
+        "name": "nh-skull events",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": true,
+        "allEvents": true,
+        "allCommands": true,
+        "allFormats": true,
+        "qos": "0",
+        "x": 140,
+        "y": 197,
+        "wires": [
+            [
+                "29ec3966.e4f636",
+                "4e79c966.85ebb8"
+            ]
+        ]
+    },
+    {
+        "id": "29ec3966.e4f636",
+        "type": "debug",
+        "z": "cc25246.b9569d8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 363,
+        "y": 305,
+        "wires": []
+    },
+    {
+        "id": "efc0fcfb.cf8cb",
+        "type": "ui_text",
+        "z": "cc25246.b9569d8",
+        "group": "84319a9.5850b68",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "All nh-skull events",
+        "label": "All nh-skull events",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 536,
+        "y": 259,
+        "wires": []
+    },
+    {
+        "id": "4e79c966.85ebb8",
+        "type": "function",
+        "z": "cc25246.b9569d8",
+        "name": "",
+        "func": "var value = \"0\";\nvar json = JSON.parse(msg.payload);\n\n\nif (json !== undefined){\n  if (json.decription !== undefined ){\n    value = json.decription;\n\n    if (value === \"Localization Transition Update Received\") {\n        value = json.offset;\n    }\n  }\n}\n\nmsg.payload = value;\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 326,
+        "y": 200,
+        "wires": [
+            [
+                "efc0fcfb.cf8cb",
+                "35610fa4.fe811"
+            ]
+        ]
+    },
+    {
+        "id": "35610fa4.fe811",
+        "type": "debug",
+        "z": "cc25246.b9569d8",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 500,
+        "y": 201,
+        "wires": []
+    },
+    {
+        "id": "d539da64.0416e8",
+        "type": "function",
+        "z": "255ec454.468184",
+        "name": "Store Offset",
+        "func": "msg.payload = msg.eventType;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 595,
+        "y": 760,
+        "wires": [
+            [
+                "1f2aab02.e85625"
+            ]
+        ]
+    },
+    {
+        "id": "4c6a0af6.a73c94",
+        "type": "function",
+        "z": "cc25246.b9569d8",
+        "name": "",
+        "func": "var jsonString = msg.payload;\nvar json = JSON.parse(jsonString);\n\nmsg.payload = json.d;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 277,
+        "y": 467,
+        "wires": [
+            [
+                "bfa37b1f.9d1028",
+                "eed3a48d.f82608"
+            ]
+        ]
+    },
+    {
+        "id": "eed3a48d.f82608",
+        "type": "debug",
+        "z": "cc25246.b9569d8",
+        "name": "payload msg object",
+        "active": false,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 482,
+        "y": 521,
+        "wires": []
+    },
+    {
+        "id": "c24a8d1.264e17",
+        "type": "ibmiot in",
+        "z": "77d21b86.6dece4",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "cmd",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-groundshock",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "",
+        "commandType": "",
+        "format": "json",
+        "name": "GroundShock",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": false,
+        "allEvents": true,
+        "allCommands": true,
+        "allFormats": "",
+        "qos": "0",
+        "x": 116,
+        "y": 143,
+        "wires": [
+            [
+                "71c808dc.946778",
+                "f2cc8527.521e98"
+            ]
+        ]
+    },
+    {
+        "id": "71c808dc.946778",
+        "type": "ui_text",
+        "z": "77d21b86.6dece4",
+        "group": "7de86cb7.de8d64",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "GS command",
+        "label": "GS command",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 327.5,
+        "y": 143,
+        "wires": []
+    },
+    {
+        "id": "f2cc8527.521e98",
+        "type": "function",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "func": "/*var json={};\nvar value=0;\n\nif (msg.payload.d === 'undefined') {\n   json = JSON.parse(msg.payload);\n   value = json.action;\n   if (value === \"#s\") {\n      value = json.speed;\n      msg.payload = value;\n   }\n    \n} else {\n    value = msg.payload.d.action;\n    if (value === \"#s\") {\n      value = msg.payload.d.speed;\n      msg.payload = value;\n    }\n}*/\nmsg1.payload = \"\";\nmsg2.payload = \"\";\nvar value = msg.payload.d.action;\n\nif (value === \"#s\") {\n  value = msg.payload.d.speed;\n  msg1.payload = value;\n} else {\n  msg2.payload = value;\n}\n\nreturn msg1,msg2;",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 305,
+        "y": 200,
+        "wires": [
+            [
+                "928e72e2.360db",
+                "a7527f6b.ab95",
+                "d79d48f4.603b68"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "928e72e2.360db",
+        "type": "ui_gauge",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "group": "a1e5b971.201a58",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Speed",
+        "label": "Car speed",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 473,
+        "y": 197,
+        "wires": []
+    },
+    {
+        "id": "5e002cc.3faa0d4",
+        "type": "ibmiot out",
+        "z": "77d21b86.6dece4",
+        "authentication": "boundService",
+        "apiKey": "",
+        "outputType": "cmd",
+        "deviceId": "nh-groundshock",
+        "deviceType": "ankisupercar",
+        "eventCommandType": "car",
+        "format": "json",
+        "data": "___",
+        "name": "GroundShock",
+        "service": "registered",
+        "x": 496,
+        "y": 310,
+        "wires": []
+    },
+    {
+        "id": "666b17e2.a3edd8",
+        "type": "ui_form",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "label": "Set speed",
+        "group": "7de86cb7.de8d64",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Speed",
+                "value": "speed",
+                "type": "number",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "speed": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 110.5,
+        "y": 312,
+        "wires": [
+            [
+                "7490122e.c1dd9c"
+            ]
+        ]
+    },
+    {
+        "id": "7490122e.c1dd9c",
+        "type": "function",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "func": "var speed = msg.payload.speed;\n\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"\"+speed+\"\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 306,
+        "y": 310,
+        "wires": [
+            [
+                "5e002cc.3faa0d4"
+            ]
+        ]
+    },
+    {
+        "id": "a7527f6b.ab95",
+        "type": "debug",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 494.5,
+        "y": 121,
+        "wires": []
+    },
+    {
+        "id": "5bbaad11.959884",
+        "type": "function",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "func": "var jsonString = msg.payload;\nvar json = JSON.parse(jsonString);\n\nmsg.payload = json.d.speed;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 304,
+        "y": 246,
+        "wires": [
+            [
+                "82c957ec.f600f8",
+                "928e72e2.360db",
+                "d79d48f4.603b68"
+            ]
+        ]
+    },
+    {
+        "id": "2f4fa5a8.1ec3ca",
+        "type": "ibmiot in",
+        "z": "77d21b86.6dece4",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-groundshock",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "39",
+        "commandType": "",
+        "format": "json",
+        "name": "GS event 39 speed",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": true,
+        "allEvents": false,
+        "allCommands": true,
+        "allFormats": false,
+        "qos": "0",
+        "x": 137,
+        "y": 246,
+        "wires": [
+            [
+                "5bbaad11.959884"
+            ]
+        ]
+    },
+    {
+        "id": "82c957ec.f600f8",
+        "type": "debug",
+        "z": "77d21b86.6dece4",
+        "name": "payload msg object",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 512,
+        "y": 245,
+        "wires": []
+    },
+    {
+        "id": "d79d48f4.603b68",
+        "type": "ui_gauge",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "group": "bf34d6be.ddd018",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "GS Speed",
+        "label": "GS Car speed",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 493,
+        "y": 157,
+        "wires": []
+    },
+    {
+        "id": "63df10e6.4e48",
+        "type": "ibmiot in",
+        "z": "77d21b86.6dece4",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "cmd",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-skull",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "39",
+        "commandType": "",
+        "format": "json",
+        "name": "Skull",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": "",
+        "allLogicalInterfaces": false,
+        "allEvents": false,
+        "allCommands": true,
+        "allFormats": "",
+        "qos": "0",
+        "x": 94,
+        "y": 437,
+        "wires": [
+            [
+                "ab47f4ff.a63ec8",
+                "2dd38f69.38d31"
+            ]
+        ]
+    },
+    {
+        "id": "ab47f4ff.a63ec8",
+        "type": "ui_text",
+        "z": "77d21b86.6dece4",
+        "group": "593d0166.449e1",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "SK command",
+        "label": "SK command",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 328,
+        "y": 439,
+        "wires": []
+    },
+    {
+        "id": "4783655d.27a58c",
+        "type": "ui_gauge",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "group": "8abeca3a.8adc58",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Speed",
+        "label": "Car speed",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 461,
+        "y": 478,
+        "wires": []
+    },
+    {
+        "id": "80b7670c.0e2c68",
+        "type": "ibmiot out",
+        "z": "77d21b86.6dece4",
+        "authentication": "boundService",
+        "apiKey": "",
+        "outputType": "cmd",
+        "deviceId": "nh-skull",
+        "deviceType": "ankisupercar",
+        "eventCommandType": "car",
+        "format": "json",
+        "data": "___",
+        "qos": "",
+        "name": "Skull",
+        "service": "registered",
+        "x": 458.5,
+        "y": 582,
+        "wires": []
+    },
+    {
+        "id": "351613e5.0fcdfc",
+        "type": "ui_form",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "label": "Set speed",
+        "group": "593d0166.449e1",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "options": [
+            {
+                "label": "Speed",
+                "value": "speed",
+                "type": "number",
+                "required": true
+            }
+        ],
+        "formValue": {
+            "speed": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 107,
+        "y": 583,
+        "wires": [
+            [
+                "2048a32c.b2d18c"
+            ]
+        ]
+    },
+    {
+        "id": "2048a32c.b2d18c",
+        "type": "function",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "func": "var speed = msg.payload.speed;\n\nmsg.payload = JSON.stringify({\n    d: {\n        action : \"#s\",\n        speed : \"\"+speed+\"\",\n        accel : \"12500\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 294.5,
+        "y": 582,
+        "wires": [
+            [
+                "80b7670c.0e2c68"
+            ]
+        ]
+    },
+    {
+        "id": "80aa4b2c.693838",
+        "type": "function",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "func": "var jsonString = msg.payload;\nvar json = JSON.parse(jsonString);\n\nmsg.payload = json.d.speed;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 297,
+        "y": 533,
+        "wires": [
+            [
+                "4783655d.27a58c",
+                "f9c82c8e.e07b5"
+            ]
+        ]
+    },
+    {
+        "id": "3e0f193e.9d33b6",
+        "type": "ibmiot in",
+        "z": "77d21b86.6dece4",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-skull",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "39",
+        "commandType": "",
+        "format": "json",
+        "name": "SK event 39 speed",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": true,
+        "allEvents": false,
+        "allCommands": true,
+        "allFormats": false,
+        "qos": "0",
+        "x": 134,
+        "y": 532,
+        "wires": [
+            [
+                "80aa4b2c.693838"
+            ]
+        ]
+    },
+    {
+        "id": "f9c82c8e.e07b5",
+        "type": "ui_gauge",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "group": "bf34d6be.ddd018",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "SK Speed",
+        "label": "SK Car speed",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 469,
+        "y": 534,
+        "wires": []
+    },
+    {
+        "id": "c57af69.01d9308",
+        "type": "ui_button",
+        "z": "a00f83bc.8de21",
+        "name": "GS Version",
+        "group": "f03a14ed.92b8b8",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "GS Version",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 142.5,
+        "y": 70,
+        "wires": [
+            [
+                "a6762dfb.a4aa6"
+            ]
+        ]
+    },
+    {
+        "id": "a6762dfb.a4aa6",
+        "type": "function",
+        "z": "a00f83bc.8de21",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n         action : \"#ver\"\n       }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 70,
+        "wires": [
+            [
+                "b237ce51.165c3"
+            ]
+        ]
+    },
+    {
+        "id": "b237ce51.165c3",
+        "type": "ibmiot out",
+        "z": "a00f83bc.8de21",
+        "authentication": "boundService",
+        "apiKey": "",
+        "outputType": "cmd",
+        "deviceId": "nh-groundshock",
+        "deviceType": "ankisupercar",
+        "eventCommandType": "car",
+        "format": "json",
+        "data": "___",
+        "name": "GroundShock",
+        "service": "registered",
+        "x": 535,
+        "y": 71,
+        "wires": []
+    },
+    {
+        "id": "ad9ff0e.5483e1",
+        "type": "ibmiot in",
+        "z": "a00f83bc.8de21",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-groundshock",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "25",
+        "commandType": "",
+        "format": "json",
+        "name": "GS event 25 version",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": true,
+        "allEvents": false,
+        "allCommands": true,
+        "allFormats": false,
+        "qos": "0",
+        "x": 154,
+        "y": 135,
+        "wires": [
+            [
+                "9a8d7c4b.51b24"
+            ]
+        ]
+    },
+    {
+        "id": "9a8d7c4b.51b24",
+        "type": "function",
+        "z": "a00f83bc.8de21",
+        "name": "",
+        "func": "var jsonString = msg.payload;\nvar json = JSON.parse(jsonString);\n\nmsg.payload = \"\" + json.d.version + \" : \" + json.d.date +  \" : \" + json.d.desc;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 350,
+        "y": 135,
+        "wires": [
+            [
+                "79117630.d5e088"
+            ]
+        ]
+    },
+    {
+        "id": "79117630.d5e088",
+        "type": "ui_text",
+        "z": "a00f83bc.8de21",
+        "group": "f03a14ed.92b8b8",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "GS Version",
+        "label": "GS Version",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 531.5,
+        "y": 135,
+        "wires": []
+    },
+    {
+        "id": "fc069787.afdbf8",
+        "type": "ui_button",
+        "z": "a00f83bc.8de21",
+        "name": "SK Version",
+        "group": "f03a14ed.92b8b8",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "SK Version",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 134,
+        "y": 241,
+        "wires": [
+            [
+                "c1cab6e.a4c0b48"
+            ]
+        ]
+    },
+    {
+        "id": "c1cab6e.a4c0b48",
+        "type": "function",
+        "z": "a00f83bc.8de21",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#ver\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 341.5,
+        "y": 241,
+        "wires": [
+            [
+                "12dfb3d6.2257ac"
+            ]
+        ]
+    },
+    {
+        "id": "a21b0d2a.5c938",
+        "type": "function",
+        "z": "a00f83bc.8de21",
+        "name": "",
+        "func": "var jsonString = msg.payload;\nvar json = JSON.parse(jsonString);\n\nmsg.payload = \"\" + json.d.version + \" : \" + json.d.date +  \" : \" + json.d.desc;\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 341.5,
+        "y": 306,
+        "wires": [
+            [
+                "aa2b02e3.697d8"
+            ]
+        ]
+    },
+    {
+        "id": "aa2b02e3.697d8",
+        "type": "ui_text",
+        "z": "a00f83bc.8de21",
+        "group": "f03a14ed.92b8b8",
+        "order": 4,
+        "width": 0,
+        "height": 0,
+        "name": "SK Version",
+        "label": "SK Version",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 523,
+        "y": 306,
+        "wires": []
+    },
+    {
+        "id": "526e56b5.6a4c38",
+        "type": "ibmiot in",
+        "z": "a00f83bc.8de21",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-skull",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "25",
+        "commandType": "",
+        "format": "json",
+        "name": "SK event 25 version",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": true,
+        "allEvents": false,
+        "allCommands": true,
+        "allFormats": false,
+        "qos": "0",
+        "x": 146,
+        "y": 305,
+        "wires": [
+            [
+                "a21b0d2a.5c938"
+            ]
+        ]
+    },
+    {
+        "id": "12dfb3d6.2257ac",
+        "type": "ibmiot out",
+        "z": "a00f83bc.8de21",
+        "authentication": "boundService",
+        "apiKey": "",
+        "outputType": "cmd",
+        "deviceId": "nh-skull",
+        "deviceType": "ankisupercar",
+        "eventCommandType": "car",
+        "format": "json",
+        "data": "___",
+        "qos": "",
+        "name": "Skull",
+        "service": "registered",
+        "x": 503.5,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "63a37082.c9049",
+        "type": "ui_button",
+        "z": "81835bc6.bfd1a8",
+        "name": "GS Battery",
+        "group": "20b17a3.45d1086",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "GS Battery",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 119,
+        "y": 74,
+        "wires": [
+            [
+                "949d2ea8.7c036"
+            ]
+        ]
+    },
+    {
+        "id": "949d2ea8.7c036",
+        "type": "function",
+        "z": "81835bc6.bfd1a8",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n         action : \"#bat\"\n       }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 326.5,
+        "y": 74,
+        "wires": [
+            [
+                "f3a66009.3ce4d"
+            ]
+        ]
+    },
+    {
+        "id": "f3a66009.3ce4d",
+        "type": "ibmiot out",
+        "z": "81835bc6.bfd1a8",
+        "authentication": "boundService",
+        "apiKey": "",
+        "outputType": "cmd",
+        "deviceId": "nh-groundshock",
+        "deviceType": "ankisupercar",
+        "eventCommandType": "car",
+        "format": "json",
+        "data": "___",
+        "name": "GroundShock",
+        "service": "registered",
+        "x": 511.5,
+        "y": 75,
+        "wires": []
+    },
+    {
+        "id": "cf24d0.e7e46b3",
+        "type": "ibmiot in",
+        "z": "81835bc6.bfd1a8",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-groundshock",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "27",
+        "commandType": "",
+        "format": "json",
+        "name": "GS event 25 version",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": true,
+        "allEvents": false,
+        "allCommands": true,
+        "allFormats": true,
+        "qos": "0",
+        "x": 130.5,
+        "y": 139,
+        "wires": [
+            [
+                "63575921.197148"
+            ]
+        ]
+    },
+    {
+        "id": "63575921.197148",
+        "type": "function",
+        "z": "81835bc6.bfd1a8",
+        "name": "",
+        "func": "var jsonString = msg.payload;\nvar json = JSON.parse(jsonString);\n\nmsg1.payload =  json.d.date +  \" : \" + json.d.desc;\nmsg2.payload =  json.d.level;\n\nreturn msg1, msg2;",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 326.5,
+        "y": 139,
+        "wires": [
+            [
+                "4e11545b.c41f6c"
+            ],
+            [
+                "5b83b0bf.56fae"
+            ]
+        ]
+    },
+    {
+        "id": "4e11545b.c41f6c",
+        "type": "ui_text",
+        "z": "81835bc6.bfd1a8",
+        "group": "20b17a3.45d1086",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "GS Battery",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 510,
+        "y": 124,
+        "wires": []
+    },
+    {
+        "id": "e8d3bf8b.4274c",
+        "type": "ui_button",
+        "z": "81835bc6.bfd1a8",
+        "name": "SK Battery",
+        "group": "20b17a3.45d1086",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "SK Battery",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "",
+        "x": 110.5,
+        "y": 245,
+        "wires": [
+            [
+                "1e0024b3.c1029b"
+            ]
+        ]
+    },
+    {
+        "id": "6dd14792.3c2218",
+        "type": "ibmiot in",
+        "z": "81835bc6.bfd1a8",
+        "authentication": "boundService",
+        "apiKey": "",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "nh-skull",
+        "applicationId": "",
+        "deviceType": "ankisupercar",
+        "eventType": "25",
+        "commandType": "",
+        "format": "json",
+        "name": "SK event 25 version",
+        "service": "registered",
+        "allDevices": false,
+        "allApplications": "",
+        "allDeviceTypes": false,
+        "allLogicalInterfaces": true,
+        "allEvents": false,
+        "allCommands": true,
+        "allFormats": true,
+        "qos": "0",
+        "x": 122.5,
+        "y": 309,
+        "wires": [
+            [
+                "33397ee0.6660d2"
+            ]
+        ]
+    },
+    {
+        "id": "76d47f6b.a911",
+        "type": "ibmiot out",
+        "z": "81835bc6.bfd1a8",
+        "authentication": "boundService",
+        "apiKey": "",
+        "outputType": "cmd",
+        "deviceId": "nh-skull",
+        "deviceType": "ankisupercar",
+        "eventCommandType": "car",
+        "format": "json",
+        "data": "___",
+        "qos": "",
+        "name": "Skull",
+        "service": "registered",
+        "x": 482,
+        "y": 247,
+        "wires": []
+    },
+    {
+        "id": "5b83b0bf.56fae",
+        "type": "ui_gauge",
+        "z": "81835bc6.bfd1a8",
+        "name": "",
+        "group": "20b17a3.45d1086",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "GB Battery",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "20",
+        "seg2": "60",
+        "x": 511.5,
+        "y": 166,
+        "wires": []
+    },
+    {
+        "id": "33397ee0.6660d2",
+        "type": "function",
+        "z": "81835bc6.bfd1a8",
+        "name": "",
+        "func": "var jsonString = msg.payload;\nvar json = JSON.parse(jsonString);\n\nmsg1.payload =  json.d.date +  \" : \" + json.d.desc;\nmsg2.payload =  json.d.level;\n\nreturn msg1, msg2;",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 320,
+        "y": 310,
+        "wires": [
+            [
+                "f71180d5.f64c5"
+            ],
+            [
+                "a4a35fa5.c0671"
+            ]
+        ]
+    },
+    {
+        "id": "1e0024b3.c1029b",
+        "type": "function",
+        "z": "81835bc6.bfd1a8",
+        "name": "",
+        "func": "msg.payload = JSON.stringify({\n    d: {\n        action : \"#bat\"\n      }\n});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 321,
+        "y": 246,
+        "wires": [
+            [
+                "76d47f6b.a911"
+            ]
+        ]
+    },
+    {
+        "id": "f71180d5.f64c5",
+        "type": "ui_text",
+        "z": "81835bc6.bfd1a8",
+        "group": "20b17a3.45d1086",
+        "order": 6,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "SK Battery",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 501,
+        "y": 301,
+        "wires": []
+    },
+    {
+        "id": "a4a35fa5.c0671",
+        "type": "ui_gauge",
+        "z": "81835bc6.bfd1a8",
+        "name": "",
+        "group": "20b17a3.45d1086",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "SK Battery",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "20",
+        "seg2": "60",
+        "x": 498,
+        "y": 343,
+        "wires": []
+    },
+    {
+        "id": "2dd38f69.38d31",
+        "type": "function",
+        "z": "77d21b86.6dece4",
+        "name": "",
+        "func": "/*var json={};\nvar value=0;\n\nif (msg.payload.d === 'undefined') {\n   json = JSON.parse(msg.payload);\n   value = json.action;\n   if (value === \"#s\") {\n      value = json.speed;\n      msg.payload = value;\n   }\n    \n} else {\n    value = msg.payload.d.action;\n    if (value === \"#s\") {\n      value = msg.payload.d.speed;\n      msg.payload = value;\n    }\n}*/\n\nvar msg1;\nmsg1.payload = \"\";\nvar msg2;\nmsg2.payload = \"\";\n\nvar value = msg.payload.d.action;\n\nif (value === \"#s\") {\n  value = msg.payload.d.speed;\n  msg1.payload = value;\n} else {\n  msg2.payload = value;\n}\n\nreturn msg1,msg2;",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 300,
+        "y": 485,
+        "wires": [
+            [
+                "4783655d.27a58c",
+                "f9c82c8e.e07b5"
+            ],
+            []
+        ]
     }
 ]
