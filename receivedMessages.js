@@ -20,9 +20,7 @@ module.exports = function() {
 
 	    var messageId = data.readUInt8(1);
 			var date = new Date();
-		
-			// mqttClient=null;
-			
+				
 			console.log("Info", messageId);
 			
 	    if (messageId == '23') {

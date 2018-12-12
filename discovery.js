@@ -15,6 +15,7 @@
 //------------------------------------------------------------------------------
 
 var noble = require('noble');
+var characteristic_CONSTANT_SERVICE="be15beef6186407e83810bd89c4d8df4";
 
 noble.on('stateChange', function(state) {
   if (state === 'poweredOn') {
